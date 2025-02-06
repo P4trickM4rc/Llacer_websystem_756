@@ -1,98 +1,299 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-        .header {
-            background-color: #333;
-            color: #fff;
-            padding: 10px 20px;
-            text-align: center;
-        }
-        .sidebar {
-            width: 200px;
-            height: 100vh;
-            background-color: #333;
-            color: #fff;
-            position: fixed;
-            top: 0;
-            left: 0;
-            padding-top: 20px;
-        }
-        .sidebar a {
-            display: block;
-            color: #fff;
-            padding: 10px;
-            text-decoration: none;
-        }
-        .sidebar a:hover {
-            background-color: #575757;
-        }
-        .main-content {
-            margin-left: 200px;
-            padding: 20px;
-        }
-        .card {
-            background-color: #fff;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        .card h2 {
-            margin-top: 0;
-        }
-        .footer {
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            padding: 10px;
-            position: fixed;
-            bottom: 0;
-            width: calc(100% - 200px);
-            margin-left: 200px;
-        }
-    </style>
-</head>
-<body>
-    <div class="header">
-        <h1>Dashboard</h1>
-    </div>
-    <div class="sidebar">
-        <a href="#">Overview</a>
-        <a href="#">Analytics</a>
-        <a href="#">User Management</a>
-        <a href="#">Settings</a>
-    </div>
-    <div class="main-content">
-        <div class="card">
-            <h2>Total Users</h2>
-            <p>1234</p>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Enhanced Dashboard</title>
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="dashboard">
+      <div class="sidebar">
+        <div class="sidebar-icon active" data-tooltip="Home">
+          <i class="bx bx-home"></i>
         </div>
-        <div class="card">
-            <h2>Active Sessions</h2>
-            <p>567</p>
+        <div class="sidebar-icon" data-tooltip="Dashboard">
+          <i class="bx bx-grid-alt"></i>
         </div>
-        <div class="card">
-            <h2>Revenue</h2>
-            <p>$8900</p>
+        <div class="sidebar-icon" data-tooltip="Projects">
+          <i class="bx bx-briefcase"></i>
         </div>
-        <div class="card">
-            <h2>New Signups</h2>
-            <p>45</p>
+        <div class="sidebar-icon" data-tooltip="Payments">
+          <i class="bx bx-credit-card"></i>
         </div>
+        <div class="sidebar-icon" data-tooltip="Analytics">
+          <i class="bx bx-bar-chart"></i>
+        </div>
+        <div class="sidebar-icon" data-tooltip="Settings">
+          <i class="bx bx-cog"></i>
+        </div>
+        <div class="sidebar-icon" data-tooltip="Help">
+          <i class="bx bx-help-circle"></i>
+        </div>
+        <div class="sidebar-icon" data-tooltip="Logout">
+          <i class="bx bx-log-in-circle"></i>
+        </div>
+      </div>
+
+      <div class="main-content">
+        <div class="header">
+          <h1>Dashboard</h1>
+          <div class="search-bar">
+            <span>🔍</span>
+            <input type="text" placeholder="Search" />
+          </div>
+        </div>
+
+        <div class="stats">
+          <div class="stat-card">
+            <h3>Total Income</h3>
+            <div class="stat-value">
+              $1200
+              <span>+45%</span>
+            </div>
+          </div>
+          <div class="stat-card">
+            <h3>Total Expense</h3>
+            <div class="stat-value">
+              4.500K
+              <span>+45%</span>
+            </div>
+          </div>
+          <div class="stat-card">
+            <h3>Total Bonus</h3>
+            <div class="stat-value">
+              6.100k
+              <span>+45%</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="chart-container">
+          <canvas id="mainChart"></canvas>
+        </div>
+
+        <div class="bottom-cards">
+          <div class="card">
+            <div class="card-header">
+              <h3>Order Statistics</h3>
+              <div class="more-button">⋮</div>
+            </div>
+            <canvas id="orderChart"></canvas>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <h3>Earnings Overview</h3>
+              <div class="more-button">⋮</div>
+            </div>
+            <canvas id="earningsChart"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <div class="right-sidebar">
+        <div class="profile">
+          <div class="profile-image">
+            <img src="images/profile.jpg" alt="Profile Image" />
+          </div>
+          <div class="profile-info">
+            <h3>Ghulam</h3>
+            <p>Product Designer</p>
+          </div>
+        </div>
+
+        <div class="activity-list">
+          <h3>Recent Activities</h3>
+          <div class="activity-item">
+            <div class="activity-image">
+              <img src="images/user-1.jpg" alt="Profile Image" />
+            </div>
+            <div class="activity-info">
+              <h4>Mike Lake</h4>
+              <p>Backend Developer</p>
+              <p>5 Mins ago</p>
+            </div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-image">
+              <img src="images/user-2.jpg" alt="Profile Image" />
+            </div>
+            <div class="activity-info">
+              <h4>Sarah Wilson</h4>
+              <p>UI Designer</p>
+              <p>15 Mins ago</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="upcoming-events">
+          <h3>Upcoming Events</h3>
+          <div class="event-item">
+            <div class="event-date">
+              <div class="day">10</div>
+              <div class="weekday">Wed</div>
+            </div>
+            <div class="event-info">
+              <h4>Top Management meeting</h4>
+              <p>With team and CEO</p>
+            </div>
+          </div>
+          <div class="event-item">
+            <div class="event-date">
+              <div class="day">15</div>
+              <div class="weekday">Mon</div>
+            </div>
+            <div class="event-info">
+              <h4>Product Review</h4>
+              <p>Monthly review</p>
+            </div>
+          </div>
+          <div class="event-item">
+            <div class="event-date">
+              <div class="day">10</div>
+              <div class="weekday">Wed</div>
+            </div>
+            <div class="event-info">
+              <h4>Top Management meeting</h4>
+              <p>With team and CEO</p>
+            </div>
+          </div>
+          <div class="event-item">
+            <div class="event-date">
+              <div class="day">15</div>
+              <div class="weekday">Mon</div>
+            </div>
+            <div class="event-info">
+              <h4>Product Review</h4>
+              <p>Monthly review</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="footer">
-        <p>&copy; 2025 Wizkalifa. All rights reserved.</p>
-    </div>
-</body>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+      // Get chart contexts
+      const mainCtx = document.getElementById("mainChart").getContext("2d");
+      const orderCtx = document.getElementById("orderChart").getContext("2d");
+      const earningsCtx = document
+        .getElementById("earningsChart")
+        .getContext("2d");
+
+      // Common options
+      const commonOptions = {
+        responsive: true,
+        maintainAspectRatio: false,
+        devicePixelRatio: 2,
+        interaction: {
+          mode: "index",
+          intersect: false,
+        },
+        plugins: {
+          tooltip: {
+            enabled: true,
+            backgroundColor: "#1e293b",
+            padding: 12,
+            titleFont: { size: 14 },
+            bodyFont: { size: 13 },
+          },
+          legend: { display: false },
+        },
+      };
+
+      // Main Chart
+      new Chart(mainCtx, {
+        type: "line",
+        data: {
+          labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+          datasets: [
+            {
+              label: "Revenue",
+              data: [1500, 2200, 1800, 2954, 2600, 3100],
+              borderColor: "#6366f1",
+              backgroundColor: "rgba(99, 102, 241, 0.1)",
+              borderWidth: 2,
+              tension: 0.4,
+              fill: true,
+              pointRadius: 4,
+              pointBackgroundColor: "#ffffff",
+              pointBorderColor: "#6366f1",
+              pointHoverRadius: 6,
+            },
+          ],
+        },
+        options: {
+          ...commonOptions,
+          scales: {
+            y: {
+              beginAtZero: true,
+              grid: {
+                display: true,
+                color: "rgba(0, 0, 0, 0.05)",
+              },
+            },
+            x: {
+              grid: {
+                display: false,
+              },
+            },
+          },
+        },
+      });
+
+      // Order Chart
+      new Chart(orderCtx, {
+        type: "bar",
+        data: {
+          labels: ["Mon", "Tue", "Wed", "Thu", "Fri"],
+          datasets: [
+            {
+              data: [4200, 3800, 4800, 4100, 3700],
+              backgroundColor: "#6366f1",
+              borderRadius: 8,
+              hoverBackgroundColor: "#818cf8",
+            },
+          ],
+        },
+        options: {
+          ...commonOptions,
+          scales: {
+            y: {
+              beginAtZero: true,
+              grid: {
+                color: "rgba(0, 0, 0, 0.05)",
+              },
+            },
+          },
+        },
+      });
+
+      // Earnings Chart
+      new Chart(earningsCtx, {
+        type: "doughnut",
+        data: {
+          labels: ["Completed", "Remaining"],
+          datasets: [
+            {
+              data: [68, 32],
+              backgroundColor: ["#6366f1", "#e5e7eb"],
+              borderWidth: 0,
+              hoverOffset: 4,
+            },
+          ],
+        },
+        options: {
+          ...commonOptions,
+          cutout: "80%",
+          animations: {
+            animateRotate: true,
+            animateScale: true,
+          },
+        },
+      });
+    </script>
+  </body>
 </html>
